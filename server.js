@@ -14,6 +14,7 @@ app.use(
     extended: false
   })
 )
+/*
 const mongoURI = 'mongodb://localhost:27017/TODO_List'
 
 mongoose
@@ -22,7 +23,16 @@ mongoose
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err))
+*/
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://cairokee:<taher@1993>@cluster0-oykp0.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
   app.use('/users', Users)
   app.use('/tasks', Tasks)
 
